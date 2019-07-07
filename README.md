@@ -56,15 +56,19 @@ Charla rápida de lo qué se abordará en el taller.
 ## <a name="step-dev-tools">Herramientas de desarrollo
 
 * `nodejs`, `npm`. Qué son? Instalación.
-* `n` manejando node versiones.
-* Armando el paquete inicial: crear `./app/watchdog`.`npm init`
+* `n` manejando versiones de `nodejs`.
+* Configuración inicial de la app
+  * Valores por defecto de `npm`
+  * Crear package.json `./app/watchdog`.`npm init`
+* Browser con herramientas de desarrollo (chrome)
+* Terminal Hyper
 
 #### links
 
 * [Cómo instalar node.js](https://nodejs.org/es/download/package-manager/)
-* [npm](https://www.npmjs.com)
+* [npm](https://www.npmjs.com) - [npm config](https://docs.npmjs.com/misc/config)
 * [n](https://github.com/tj/n)
-
+* [hyper](https://hyper.is/)
 
 ### Acerca de mi
 

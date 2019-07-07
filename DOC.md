@@ -45,3 +45,13 @@ Documentación Adicional
 	# contriburos rank
 	rank = shortlog -sn --no-merges
 ```
+
+## <a name="step-dev-tools">Herramientas de desarrollo
+
+Configuración valor por defecto de `npm`
+```cli
+> npm set init-author-name <name>
+> npm set init-author-email <name>
+> npm set init-author-url <url>
+> npm set init-licence <MIT>
+```
