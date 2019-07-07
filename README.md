@@ -26,11 +26,16 @@ Un ejemplo sencillo de uso sencillo podría ser la supervisón de blogs de nuest
 
 * [Presentación](#step-presentation)
 * [Herramientas de desarrollo](#step-dev-tools)
+* [Dependencias básicas](#initial-dependencies)
 
 # Temas
 
 ## Presentación
 Charla rápida de lo qué se abordará en el taller.
+
+* Tecnologías
+* Entorno de desarrollo. Aplicaciones.
+* Idea de la aplicación Watchdog
 
 ## <a name="step-presentation">Paso básico: Primeras acciones en el teclado
 
@@ -69,6 +74,17 @@ Charla rápida de lo qué se abordará en el taller.
 * [npm](https://www.npmjs.com) - [npm config](https://docs.npmjs.com/misc/config)
 * [n](https://github.com/tj/n)
 * [hyper](https://hyper.is/)
+
+## <a name="initial-dependencies">Dependencias básicas
+
+Instalación de las dependencias básicas de la aplicación. Presentación teórica de React y Next.js
+
+#### links
+
+* [next.js](https://nextjs.org/)
+* [React](https://es.reactjs.org/)
+
+---------------------
 
 ### Acerca de mi
 
