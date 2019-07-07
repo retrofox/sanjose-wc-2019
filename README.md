@@ -27,6 +27,7 @@ Un ejemplo sencillo de uso sencillo podría ser la supervisón de blogs de nuest
 * [Presentación](#step-presentation)
 * [Herramientas de desarrollo](#step-dev-tools)
 * [Dependencias básicas](#initial-dependencies)
+* [Aplicación básica funcionando](#app-first-approach)
 
 # Temas
 
@@ -83,6 +84,13 @@ Instalación de las dependencias básicas de la aplicación. Presentación teór
 
 * [next.js](https://nextjs.org/)
 * [React](https://es.reactjs.org/)
+
+## <a name="app-first-approach">Aplicación básica funcionando</a>
+
+Primer versión de la aplicación _super básica_ funcionando. Configración de next.js.
+Agregar scripts de ejecución.
+Homepage.
+Primer componente.
 
 ---------------------
 
