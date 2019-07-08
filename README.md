@@ -5,22 +5,30 @@
 <img src="https://2019.sanjose.wordcamp.org/files/2019/03/date-header-home-temp.png" width="436px" />
 </p>
 
-Repositorio donde se aloja todo el material utilizado para el dictato del workshop en el [WordCamp de San Jose](https://2019.sanjose.wordcamp.org), Costa Rica, llevado a cabo el 7 y 8 de septiembre del 2019.
+Repositorio donde se aloja todo el material utilizado para el dictado del workshop en el [WordCamp de San Jose](https://2019.sanjose.wordcamp.org), Costa Rica, llevado a cabo el 7 y 8 de septiembre del 2019.
+
+---------------------------------
+
+# WordPress.js@0.0.1-beta.0
+
+Guiá de desarrollo de una aplicación moderna integrada con WordPress.
 
 # Idea
 
-WorkShop focalizado en el desarrollo de una aplicación web moderna, donde se mostraran ejemplos claros y consisos de algunas herramientas tan útiles y básicas como necesarias.
-Desde la configuración de tu entorno local de trabajo, pasando por cómo revisionar tu código para finalmente aterrizar en el uso de las herramientas de integración de WordPress.
+La idea es realizar un workshop focalizado en el desarrollo de una aplicación web moderna, donde se mostraran ejemplos claros y consisos de algunas herramientas tan útiles y básicas como necesarias.
+Desde la configuración de tu entorno de trabajo pasando, por varias etapas intermedias tales como revisionar tu código, herramientas de edición y testeo, etc. para finalmente aterrizar en el uso de la integración con WordPress.
 
-`#nodejs`, `#git` ,`#react` y `#wordpress` son algunos tags definen por sí solos el alcance del curso.
+`#nodejs`, `#git` ,`#react` y `#wordpress` son algunos tags que definen por sí solos el alcance del curso.
 
 
-Si bien el nivel del curso depende de cuán familiarizado se esté con este tipo de tecnologías, está pensado partiendo de un nivel #principiante.   
+Si bien el nivel del curso depende de cuán familiarizado se esté con este tipo de tecnologías está pensado partiendo de un nivel `#principiante`; pero sin dejar de tener en cuenta que también se abordarán detalles específicos y avanzados relacionados con el entorno.
 
 # Watchdog - Aplicación de Ejemplo
 
 Intentaremos desarrollar una aplicación que sirva como herramienta de supervisión de sitios web implementados con WordPress.
 Un ejemplo sencillo de uso sencillo podría ser la supervisón de blogs de nuestros clientes. A veces para dar un buen soporte necesitamos saber qué cuáles son las acciones que se han realizado en los sitios web para entender la falla del problema: instalación de plugins, themes, cambio de permisos, elimiar usuarios, etc. son algunas de las acciones que intentaremos supervisar.
+
+----------------------------------------------------
 
 # Sumario
 
@@ -28,8 +36,6 @@ Un ejemplo sencillo de uso sencillo podría ser la supervisón de blogs de nuest
 * [Herramientas de desarrollo](#step-dev-tools)
 * [Dependencias básicas](#initial-dependencies)
 * [Aplicación básica funcionando](#app-first-approach)
-
-# Temas
 
 ## Presentación
 Charla rápida de lo qué se abordará en el taller.
@@ -97,6 +103,8 @@ Primer componente.
 ### Acerca de mi
 
 <img align="left" width="100" height="100" style="margin: 0 20px 5px 0; border: 1px solid #ddd; padding: 5px; background-color: #eee" src="https://www.gravatar.com/avatar/3e37f1c7095721acea903744625cb7dd?s=256">
-Mi nombre es [Damián Suárez](https://damian.blog), soy programador/desarrollador 100% orientado a tecnologías webs en los últimos 10 años, de los cuales más de la mitad de este tiempo los he compartido con la gran familia [Automattic](http://automattic.com).
+Mi nombre es [Damián Suárez](https://damian.blog), soy programador/desarrollador 100% especializado en tecnologías webs con más de 10 años de experiencia, de los cuales más de la mitad los he vivido con la gran familia [Automattic](http://automattic.com).
 
-Utilizo [`@retrofox`](https://twitter.com/retrofox) como seudónomo cuando me es posible :-D.
+Utilizo [`@retrofox`](https://twitter.com/retrofox) como seudónomo (cuando me es posible :-D). He trabajado como freelancer varios años, en un par de startups siendo [cloudup](https://cloudup.com) la más conocida y exitosa de mi carrera.
+
+Principiante autodidacta, apasianado por vocación, trato de mantener viva la llama que alimenta el deseo de hacer de la programación una tarea creativa y divertida.
