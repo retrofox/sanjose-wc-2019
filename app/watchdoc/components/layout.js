@@ -1,5 +1,8 @@
-import Link from 'next/link'
-import Head from 'next/head'
+import Head from 'next/head';
+import Menu from './layout-menu';
+import Footer from './layout-footer';
+
+const connected = true;
 
 export default ({ children, title = 'Watchdog' }) => (
   <div>
@@ -8,24 +11,13 @@ export default ({ children, title = 'Watchdog' }) => (
       <meta charSet='utf-8' />
       <meta name='viewport' content='initial-scale=1.0, width=device-width' />
     </Head>
+
     <header>
-      <nav>
-        <Link href='/'>
-          <a>🐶 Watchdog</a>
-        </Link>{' '}
-        |
-        <Link href='/logout'>
-          <a>Login</a>
-        </Link>{' '}
-        |
-        <Link href='/contact'>
-          <a>Contacto</a>
-        </Link>
-      </nav>
+        <Menu />
     </header>
 
-    {children}
+    {connected && children}
 
-    <footer>San José WordCamp @2019</footer>
+    <footer><Footer /></footer>
   </div>
 )
