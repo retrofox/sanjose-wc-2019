@@ -2,6 +2,15 @@
  * External dependencies
  */
 import Link from "next/link";
+import { OauthSender } from 'react-oauth-flow';
+
+import config from '../config/development';
+
+const {
+    API_CLIENT_ID,
+    API_AUTHORIZE_URL,
+    API_REDIRECT_URL,
+} = config;
 
 /**
  * Internal dependencies
@@ -32,9 +41,14 @@ export default () => <nav>
 		</li>
 
 		<li>
-			<Link href='/login'>
-				<a>Login</a>
-			</Link>
+			<OauthSender
+				authorizeUrl= {API_AUTHORIZE_URL }
+				clientId={API_CLIENT_ID}
+				redirectUri={ API_REDIRECT_URL}
+				state={{ from: '/settings' }}
+				render={({ url }) => <a href={url}>Login</a>}
+				args={{ scope: 'global' }}
+			/>
 		</li>
 	</ul>
 
