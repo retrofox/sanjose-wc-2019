@@ -36,5 +36,5 @@ export default () => <nav>
 		</li>
 	</ul>
 
-	<div className="react-version">version: { version }</div>
+	<div className="react-version">v{ version }</div>
 </nav>
