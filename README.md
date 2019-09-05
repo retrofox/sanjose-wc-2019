@@ -40,6 +40,7 @@ Un ejemplo sencillo de uso sencillo podría ser la supervisón de blogs de nuest
 * [Mejores menores](#iteration-1)
 * [OAuth con WordPress.com](#wordpress-com-oauth)
 * [Interacción con la API WordPress.com](#wordpress-com-api-requests)
+* [Renderizando listado de sitios](#render-sites-list)
 
 ## Presentación
 Charla rápida de lo qué se abordará en el taller.
@@ -131,6 +132,8 @@ https://github.com/zeit/next.js/wiki/Global-styles-and-layouts
 * Obtener información personal (/me)
 * Obtener listado de Sitios (/sites)
 
+## <a name="render-sites-list">Renderizando listado de sitios</a>
+
 ## <a name="redux">Data flow - Redux</a>
 
 * Implementar el ciclo de almacenamiento de datos con Redux (useRedux)
@@ -140,9 +143,6 @@ https://github.com/zeit/next.js/wiki/Global-styles-and-layouts
 * Almacenar los datos obtenidos en el client usando foreStorage
 
 
-
-* Obtener información personal (/me)
-* Obtener listado de Sitios (/sites)
 
 #### links
 
