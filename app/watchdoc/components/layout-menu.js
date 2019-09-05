@@ -1,4 +1,12 @@
+/**
+ * External dependencies
+ */
 import Link from "next/link";
+
+/**
+ * Internal dependencies
+ */
+import { version } from '../package';
 
 export default () => <nav>
 	<style jsx>{`
@@ -46,6 +54,14 @@ export default () => <nav>
 			background-color: #444;
 			color: white;
 		}
+		
+		.react-version {
+			height: 60px;
+			line-height: 60px;
+			position: absolute;
+			right: 10px;
+			top: 0;
+		}
 	`}</style>
 	<ul>
 		<li>
@@ -66,4 +82,6 @@ export default () => <nav>
 			</Link>
 		</li>
 	</ul>
+
+	<div className="react-version">version: { version }</div>
 </nav>
