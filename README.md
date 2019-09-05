@@ -112,7 +112,8 @@ Primer componente. Agregamos estilos básicos (in line).
 * Estilos globales.
 * Uso de `<Link />` component.
 * agregar versión de app
-* Agregar `doc` link al menu principal (markdown).
+* Agregar `doc` link al menu principal (markdown). (TODO)
+* Agregar Theme (TODO) 
 
 #### links
 
@@ -126,6 +127,12 @@ https://github.com/zeit/next.js/wiki/Global-styles-and-layouts
 * Instalación y uso del component de React.
 * Configuración.
 * Almacenar token para hacer persistente la autenticación.
+
+#### links
+
+* [WordPress.com OAuth](https://developer.wordpress.com/docs/oauth2/)
+* [React OAuth Flow](https://github.com/adambrgmn/react-oauth-flow#readme)
+
 
 ## <a name="wordpress-com-api-requests">Interacción con la API WordPress.com</a>
 
@@ -141,7 +148,6 @@ https://github.com/zeit/next.js/wiki/Global-styles-and-layouts
 ## <a name="redux">Data flow - Persistencia</a>
 
 * Almacenar los datos obtenidos en el client usando foreStorage
-
 
 
 #### links
