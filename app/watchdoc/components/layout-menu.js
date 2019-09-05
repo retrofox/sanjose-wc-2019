@@ -20,6 +20,12 @@ export default () => <nav>
 		</li>
 
 		<li>
+			<Link href='/about'>
+				<a>Acerca</a>
+			</Link>
+		</li>
+
+		<li>
 			<Link href='/contact'>
 				<a>Contacto</a>
 			</Link>
