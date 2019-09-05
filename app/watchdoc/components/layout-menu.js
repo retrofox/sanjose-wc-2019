@@ -3,15 +3,21 @@ import Link from "next/link";
 export default () => <nav>
 	<ul>
 		<li>
-			<a href='/'>🐶 Home</a>
+			<Link href='/'>
+				<a>🐶 Home</a>
+			</Link>
 		</li>
 
 		<li>
-			<a href='/contact'>Contacto</a>
+			<Link href='/contact'>
+				<a>Contacto</a>
+			</Link>
 		</li>
 
 		<li>
-			<a href='/login'>Login</a>
+			<Link href='/login'>
+				<a>Login</a>
+			</Link>
 		</li>
 	</ul>
 </nav>
