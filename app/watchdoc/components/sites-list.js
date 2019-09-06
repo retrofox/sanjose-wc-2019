@@ -3,16 +3,21 @@
  */
 import {map} from "lodash";
 import React from "react";
+import moment from 'moment';
 
-export default ({sites}) => <div className="sites-container">
+export default ({sites, activity}) => <div className="sites-container">
 	<style jsx>{`
 	ul li {
 		list-style: none;
 	}
 	
 	ul li .site-id {
-		width: 100px;
+		width: 80px;
 		display: inline-block;
+	}
+	
+	.site-container {
+		margin-bottom: 5px;
 	}
 `}</style>
 	<ul>
@@ -21,7 +26,19 @@ export default ({sites}) => <div className="sites-container">
 				<div key={ site.ID } className="site-container">
 					<li>
 						<span className="site-id">{ site.ID }</span>
-						{ site.name }
+						<a href={ site.URL }>{ site.URL }</a>
+
+						<ul>
+							{
+								map(
+									activity[site.ID] ? activity[site.ID].events : [],
+									( event, ind ) =>
+									<li key={ `activity-${site.ID}-${ind}`} className="events-container">
+										{ event.summary } by { event.actor.name } { moment( event.published ).fromNow()}
+									</li>
+								)
+							}
+						</ul>
 					</li>
 				</div>
 			)
