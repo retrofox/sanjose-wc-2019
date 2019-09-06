@@ -26,7 +26,9 @@
   },
   "homepage": "https://github.com/retrofox/sanjose-wc-2019#readme",
   "dependencies": {
+    "localforage": "^1.7.3",
     "next": "^8.1.0",
+    "query-string": "^6.8.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-oauth-flow": "^1.2.0"

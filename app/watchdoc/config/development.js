@@ -7,6 +7,8 @@ const  config =  {
 	API_AUTHORIZE_URL: 'https://public-api.wordpress.com/oauth2/authorize',
 	API_TOKEN_URL: 'https://public-api.wordpress.com/oauth2/token-info',
 	API_CONNECTION_ARGS: { scope: 'global', response_type: 'token' },
+
+	API_HOST: 'https://public-api.wordpress.com',
 };
 
 config.API_REDIRECT_URL = `${config.APP_HOST}:${config.APP_PORT}`;

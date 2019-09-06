@@ -15,6 +15,7 @@ const {
 	API_CLIENT_ID,
 	API_AUTHORIZE_URL,
 	API_REDIRECT_URL,
+	API_CONNECTION_ARGS,
 } = config;
 
 export default () =>
@@ -24,5 +25,5 @@ export default () =>
 		redirectUri={ API_REDIRECT_URL}
 		state={{ from: '/settings' }}
 		render={({ url }) => <a href={url}>Login</a>}
-		args={{ scope: 'global' }}
+		args={API_CONNECTION_ARGS}
 	/>

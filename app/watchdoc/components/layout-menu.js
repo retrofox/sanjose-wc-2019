@@ -32,7 +32,7 @@ export default () => <nav>
 		</li>
 
 		<li>
-			<a href="#"><ConnectLink /></a>
+			<ConnectLink />
 		</li>
 	</ul>
 

@@ -37,10 +37,14 @@ Un ejemplo sencillo de uso sencillo podría ser la supervisón de blogs de nuest
 * [Dependencias básicas](#initial-dependencies)
 * [Aplicación básica funcionando](#app-first-approach)
 * [Layout](#app-layout)
+<<<<<<< HEAD
 * [Mejores menores](#iteration-1)
 * [OAuth con WordPress.com](#wordpress-com-oauth)
 * [Interacción con la API WordPress.com](#wordpress-com-api-requests)
 * [Renderizando listado de sitios](#render-sites-list)
+=======
+* [OAuth con WordPress.com](#wordpress-com-oauth)
+>>>>>>> origin/master
 
 ## Presentación
 Charla rápida de lo qué se abordará en el taller.
@@ -104,6 +108,7 @@ Homepage (pages/index.js).
 Primer componente. Agregamos estilos básicos (in line).
 
 ## <a name="app-layout">Layout</a>
+<<<<<<< HEAD
 * Crear e implementar un layout básico (este dede funcionar como un HOC).
 * Carpeta `./components` y archivo `./components/layout.js`.
 * Crear `menu` and `footer`.
@@ -149,6 +154,17 @@ https://github.com/zeit/next.js/wiki/Global-styles-and-layouts
 
 * Almacenar los datos obtenidos en el client usando foreStorage
 
+=======
+* Crear e implementar un layout básico (este dede buncionar como un HOC)
+* Carpeta `./components` y archivo `./components/layout.js`
+
+## <a name="wordpress-com-oauth">OAuth con WordPress.com</a>
+
+Implementación de OAuth con nuestra cuenta de WordPress.com.
+Instalación y uso del component de React.
+Configuración.
+ 
+>>>>>>> origin/master
 
 #### links
 
