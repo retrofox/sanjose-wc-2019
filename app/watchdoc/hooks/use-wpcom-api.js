@@ -36,6 +36,9 @@ const useWPComApiRequest = ( endpoint, initialData, {
 		headers: { Authorization: `Bearer ${token}` }
 	} );
 
+	const CancelToken = axios.CancelToken;
+	const source = CancelToken.source();
+
 	// Init timer once.
 	useEffect( () => {
 		if ( ! longPolling ) {
@@ -49,8 +52,7 @@ const useWPComApiRequest = ( endpoint, initialData, {
 		}
 
 		const timerId = setInterval( () => {
-			console.count( 'timer' );
-			// triggerRequest();
+			triggerRequest();
 		}, longPolling);
 
 		return () => window.clearInterval( timerId );
@@ -75,6 +77,8 @@ const useWPComApiRequest = ( endpoint, initialData, {
 			setIsLoading(false);
 		};
 		fetchData();
+
+		return () => source.cancel( 'BOO!' );
 	}, [url, requestAgain ] );
 
 	return [ { data, isLoading, isError }, setEndpoint ];
