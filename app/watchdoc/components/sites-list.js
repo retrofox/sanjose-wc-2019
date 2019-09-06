@@ -26,19 +26,19 @@ export default ({sites, activity}) => <div className="sites-container">
 				<div key={ site.ID } className="site-container">
 					<li>
 						<span className="site-id">{ site.ID }</span>
-						<a href={ site.URL }>{ site.URL }</a>
+						<a href={ site.URL }>{ site.name }</a>
 
-						<ul>
-							{
-								map(
-									activity[site.ID] ? activity[site.ID].events : [],
-									( event, ind ) =>
-									<li key={ `activity-${site.ID}-${ind}`} className="events-container">
-										{ event.summary } by { event.actor.name } { moment( event.published ).fromNow()}
-									</li>
-								)
-							}
-						</ul>
+						{/*<ul>*/}
+						{/*	{*/}
+						{/*		map(*/}
+						{/*			activity[site.ID] ? activity[site.ID].events : [],*/}
+						{/*			( event, ind ) =>*/}
+						{/*			<li key={ `activity-${site.ID}-${ind}`} className="events-container">*/}
+						{/*				{ event.summary } by { event.actor.name } { moment( event.published ).fromNow()}*/}
+						{/*			</li>*/}
+						{/*		)*/}
+						{/*	}*/}
+						{/*</ul>*/}
 					</li>
 				</div>
 			)
