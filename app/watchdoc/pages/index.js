@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 
 /**
  * Internal dependencies
@@ -15,8 +15,16 @@ import SitesList from '../components/sites-list';
 import config from '../config/development';
 const { API_HOST } = config;
 
+const dataReducer = ( state, action ) => {
+	switch ( action.type ) {
+		case 'requestSitesList':
+	    	return { ...state, sites: action.sites };
+	        break;
+	}
+};
+
 export default ({accessToken}) => {
-	const [ sites, setSites ] = useState([]);
+	const [ state, dispatch ] = useReducer(dataReducer, {});
 
 	useEffect( () => {
 	    if ( ! accessToken ) {
@@ -31,7 +39,10 @@ export default ({accessToken}) => {
 			},
 		} )
 			.then( response => response.json() )
-			.then( json => setSites( json.sites ) );
+			.then( json => dispatch({
+				type: 'requestSitesList',
+				sites: json.sites,
+			}));
 	}, [] );
 
   	return <Layout>
@@ -43,6 +54,6 @@ export default ({accessToken}) => {
 			🐶 Watchdog
 		</h1>
 
-		<SitesList sites={ sites } />
+		<SitesList sites={ state.sites } />
 	</Layout>
 }
