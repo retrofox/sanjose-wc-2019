@@ -2,13 +2,12 @@
  * External dependencies
  */
 import React, { useEffect, useState } from 'react';
-import { map } from 'lodash';
-
 
 /**
  * Internal dependencies
  */
 import Layout from '../components/layout'
+import SitesList from '../components/sites-list';
 
 /**
  * Internal dependencies
@@ -16,32 +15,7 @@ import Layout from '../components/layout'
 import config from '../config/development';
 const { API_HOST } = config;
 
-const SitesList = ( { sites } ) => <div className="sites-container">
-	<style jsx>{`
-		ul li {
-			list-style: none;
-		}
-		
-		ul li .site-id {
-			width: 100px;
-			display: inline-block;
-		}
-	`}</style>
-	<ul>
-	{
-		map( sites, site =>
-			<div key={ site.ID } className="site-container">
-				<li>
-					<span className="site-id">{ site.ID }</span>
-					{ site.name }
-				</li>
-			</div>
-		)
-	}
-	</ul>
-</div>;
-
-export default ( { accessToken }) => {
+export default ({accessToken}) => {
 	const [ sites, setSites ] = useState([]);
 
 	useEffect( () => {
