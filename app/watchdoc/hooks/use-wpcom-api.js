@@ -5,12 +5,6 @@ import React, { useState, useEffect, useReducer } from 'react';
 import axios from 'axios';
 
 /**
- * Internal dependencies
- */
-import { reducer, initialState } from '../lib/reducer';
-import { fetching, success, error } from '../lib/actions-creator';
-
-/**
  * Config
  */
 
@@ -20,8 +14,8 @@ const { API_HOST } = config;
 const useWPComApiRequest = ( endpoint, initialData, {
 	namespace = `rest`,
 	version = `v1.1`,
-	token = null,
 	longPolling = false,
+	token = null,
 } ) => {
 	const [ data, setData ] = useState( initialData );
 	const [ url, setUrl ] = useState( `${ API_HOST }/${ namespace }/${ version }${ endpoint }` );
@@ -31,10 +25,15 @@ const useWPComApiRequest = ( endpoint, initialData, {
 
 	const setEndpoint = ( path ) => setUrl( `${ API_HOST }/${ namespace }/${ version }${ path }` );
 
-	const requester = axios.create( {
+	const requestParams = {
 		baseURL: API_HOST,
-		headers: { Authorization: `Bearer ${token}` }
-	} );
+	};
+
+	if ( token ) {
+		requestParams[ 'headers' ] = { Authorization: `Bearer ${token}` };
+	}
+
+	const requester = axios.create( requestParams );
 
 	const CancelToken = axios.CancelToken;
 	const source = CancelToken.source();
@@ -64,14 +63,10 @@ const useWPComApiRequest = ( endpoint, initialData, {
 			setIsError( false );
 			setIsLoading( true );
 			try {
-				if ( ! token ) {
-					console.warn( 'No Token Provided!' );
-					return;
-				}
 				const result = await requester(url);
 				setData(result.data);
 			} catch (error) {
-				console.error( error );
+				setData( error.message );
 				setIsError(true);
 			}
 			setIsLoading(false);
@@ -79,7 +74,7 @@ const useWPComApiRequest = ( endpoint, initialData, {
 		fetchData();
 
 		return () => source.cancel( 'BOO!' );
-	}, [url, requestAgain ] );
+	}, [url, requestAgain, token ] );
 
 	return [ { data, isLoading, isError }, setEndpoint ];
 };

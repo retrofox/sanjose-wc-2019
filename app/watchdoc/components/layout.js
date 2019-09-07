@@ -1,8 +1,7 @@
 /**
  * External dependencies
  */
-import React, { useState } from 'react';
-
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 
 /**
@@ -11,26 +10,46 @@ import Head from 'next/head';
 import Menu from './layout-menu';
 import Footer from './layout-footer';
 import globalStyles from './global-styles';
+import { setToken } from '../lib/store';
+import pickUpTokenFromURL from '../lib/pick-up-token-from-url';
 
-export default ({ children, title = 'Watchdog' }) => (
-	<div>
-		<Head>
-			<title>{title}</title>
-			<meta charSet='utf-8' />
-			<meta name='viewport' content='initial-scale=1.0, width=device-width' />
-		</Head>
 
-		<header>
-			<Menu />
-		</header>
+// const watchdogReducer = ( state, action ) => {
+// 	switch ( action.type ) {
+// 		case 'storeToken':
+// 			return { ...state, token: action.token };
+// 	}
+// };
 
-		<section className="main-container">
-			{children}
-		</section>
 
-		<footer>
-			<Footer />
-		</footer>
-		<style global jsx>{ globalStyles }</style>
-  </div>
-)
+const Layout = ({ children, title = 'Watchdog' }) => {
+	const pickedUpToken = pickUpTokenFromURL();
+	if ( pickedUpToken ) {
+		setToken( pickedUpToken );
+	}
+
+	return (
+		<div>
+			<Head>
+				<title>{title}</title>
+				<meta charSet='utf-8'/>
+				<meta name='viewport' content='initial-scale=1.0, width=device-width'/>
+			</Head>
+
+			<header>
+				<Menu />
+			</header>
+
+			<section className="main-container">
+				{children}
+			</section>
+
+			<footer>
+				<Footer/>
+			</footer>
+			<style global jsx>{globalStyles}</style>
+		</div>
+	)
+}
+
+export default Layout;

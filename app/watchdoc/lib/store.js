@@ -1,13 +1,8 @@
 /**
  * External dependencies
  */
-import localforage from 'localforage';
 
-/**
- * Store instance
- */
-const store = localforage.createInstance( {name: 'watchdog'});
-
-export const accessToken = store.getItem( 'access_token' );
-
-export default store;
+export const setToken = ( token ) => window.localStorage.setItem( 'token', token );
+export const getToken = () => typeof window !== 'undefined'
+	? window.localStorage.getItem( 'token' )
+	: null;
