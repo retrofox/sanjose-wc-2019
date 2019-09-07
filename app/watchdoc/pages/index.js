@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect } from 'react';
 
 /**
  * Internal dependencies
@@ -9,49 +9,46 @@ import React, { useEffect, useReducer, useState } from 'react';
 import useWPComApi from '../hooks/use-wpcom-api';
 import Layout from '../components/layout'
 import SitesList from '../components/sites-list';
+
 import { getToken } from '../lib/store';
 import config from "../config/development";
+
 const { API_HOST } = config;
 
 const Home =  () => {
 	// create requester by custom hook.
-	const [ { data: sitesData, isSitesError }, fetchSites ] = useWPComApi(
-		{ sites: [] }, { token: getToken(), longPolling: false }
+	const [ { state, requestAgain }, doFetch ] = useWPComApi(
+		{ sites: [] }, { token: getToken(), longPolling: 10000 }
 	);
 
-	const [ { data: activityData, isActivityError }, fetchSiteEvents ] = useWPComApi(
-		{ sites: [] }, {
-			token: getToken(),
-			longPolling: false,
-			namespace: 'wpcom',
-			version: 'v2',
-		}
-	);
-
+	const { data, isError, isLoading } = state;
 
 	useEffect( () => {
-		fetchSites( '/me/sites/' );
+		doFetch( {
+			url: `${ API_HOST }/rest/v1.1/me/sites/`,
+			resource: 'sites',
+		} );
+
+		const sites = data.sites ? data.sites.sites : [];
 
 		// Fetch me sites
-		if ( sitesData.sites && sitesData.sites.length ) {
-			const sites = sitesData.sites;
-
-			console.log( { sites } );
-
-
+		if ( sites.length ) {
 			for ( const ind in sites ) {
 				const site = sites[ ind ];
 				const siteId = site.ID;
-				console.log( { siteId } );
 
 				setTimeout( () => {
-					fetchSiteEvents(`/sites/${siteId}/activity`);
-				}, 1000 );
+					console.log( `fetching ${ siteId } site `);
+					doFetch( {
+						url: `${ API_HOST }/wpcom/v2/sites/${siteId}/activity`,
+						resource: 'activity',
+					} );
+				}, 500 * ind );
 			}
 		}
-	}, [ sitesData.sites ] );
+	}, [ requestAgain ] );
 
-	if ( isSitesError ) {
+	if ( isError ) {
 		return (
 			<Layout title="No Connection">
 				<style jsx>{`
@@ -76,6 +73,7 @@ const Home =  () => {
 		);
 	}
 
+	const sites = data.sites ? data.sites.sites : [];
 
   	return <Layout>
 	  	<h1 style={{
@@ -86,7 +84,32 @@ const Home =  () => {
 			🐶 Watchdog
 		</h1>
 
-		<SitesList sites={ sitesData.sites } />
+		{ ( isLoading ) &&
+			<div className="is-loading">
+				<style jsx>{`
+					position: absolute;
+					right: 10px;
+					background-color: #040;
+					color: #afa;
+					border-radius: 3px;
+					padding: 3px 10px;
+					animation: pulse 500ms infinite alternate;
+					
+					@keyframes pulse {
+						0% {
+							background-color: #0a0;
+						}
+						
+					 	100% {
+							background-color: #030;
+					 	}
+					}
+				`}</style>
+				loading
+			</div>
+		}
+
+		<SitesList sites={ sites } activity={ data.activity } />
 	</Layout>
 }
 

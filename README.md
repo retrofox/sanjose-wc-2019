@@ -141,9 +141,9 @@ https://github.com/zeit/next.js/wiki/Global-styles-and-layouts
 
 ## <a name="render-sites-list">Renderizando listado de sitios</a>
 
-## <a name="redux">Data flow - Redux</a>
+## <a name="redux">Data flow - The State</a>
 
-* Implementar el ciclo de almacenamiento de datos con Redux (useRedux)
+* Implementar el manejo de almacenamiento de datos en el state con useState, useReducer, useRedux.
 
 ## <a name="redux">Data flow - Persistencia</a>
 

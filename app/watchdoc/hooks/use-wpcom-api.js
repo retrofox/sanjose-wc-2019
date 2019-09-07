@@ -7,23 +7,64 @@ import axios from 'axios';
 /**
  * Config
  */
-
 import config from '../config/development';
 const { API_HOST } = config;
 
+const dataFetchReducer = ( state, { type, payload, error, resource } ) => {
+	switch ( type ) {
+		case 'FETCH_INIT':
+			return { ...state, isLoading: true, isError: false };
+		case 'FETCH_SUCCESS':
+			let data = {};
+			if ( resource === 'activity' ) {
+				// get Site ID from id
+				let siteID = payload.id.match( /sites\/(.+)\// );
+				siteID = siteID.length > 1 ? Number( siteID[1] ): payload.id;
+
+				data = {
+					...state.data,
+					activity: {
+						...state.data.activity,
+						[ siteID ]: {
+							siteID,
+							...payload,
+						},
+					}
+				}
+			} else {
+				data = {
+				...state.data,
+					[ resource ]: {
+				...payload
+				} }
+			}
+
+			return {
+				...state,
+				isLoading: false,
+				isError: false,
+				data,
+				error: null,
+			};
+		case 'FETCH_FAILURE':
+			return { ...state, isLoading: false, isError: true, error };
+		default:
+			throw new Error();
+	}
+};
+
 const useWPComApiRequest = ( initialData, {
-	namespace = `rest`,
-	version = `v1.1`,
 	longPolling = false,
 	token = null,
 } ) => {
-	const [ data, setData ] = useState( initialData );
-	const [ url, setUrl ] = useState('');
-	const [ isLoading, setIsLoading ] = useState(false);
-	const [ isError, setIsError ] = useState(false);
+	const [ { url, resource }, setRequest ] = useState('');
 	const [ requestAgain, triggerRequest ] = useReducer( state => state + 1, 0 );
 
-	const setEndpoint = ( path ) => setUrl( `${ API_HOST }/${ namespace }/${ version }${ path }` );
+	const [ state, dispatch ] = useReducer( dataFetchReducer, {
+		data: {},
+		isLoading: false,
+		isError: false,
+	} );
 
 	const requestParams = {
 		baseURL: API_HOST,
@@ -64,25 +105,21 @@ const useWPComApiRequest = ( initialData, {
 		}
 
 		const fetchData = async () => {
-			setIsError( false );
-			setIsLoading( true );
+			dispatch( { type: 'FETCH_INIT' } );
+
 			try {
 				const result = await requester(url);
-				setData(result.data);
-				setIsError( false );
+				dispatch( { type: 'FETCH_SUCCESS', payload: result.data, resource } );
 			} catch (error) {
-				setData( error.message );
-				setIsError(true);
+				dispatch( { type: 'FETCH_FAILURE', error } );
 			}
-			setIsLoading(false);
 		};
-
 		fetchData();
 
 		return () => source.cancel( 'BOO!' );
 	}, [ url, requestAgain, token ] );
 
-	return [ { data, isLoading, isError }, setEndpoint ];
+	return [ { state , requestAgain }, setRequest ];
 };
 
 export default useWPComApiRequest;

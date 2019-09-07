@@ -1,11 +1,25 @@
 /**
  * External dependencies
  */
-import {map} from "lodash";
+import {filter, map} from "lodash";
 import React from "react";
 import moment from 'moment';
 
-export default ({sites, activity}) => <div className="sites-container">
+const getActivityEvents = ( activity, siteId ) => {
+	if ( ! activity ) {
+		return [];
+	}
+
+	if ( ! activity[ siteId ] ) {
+		return [];
+	}
+
+	return activity[ siteId ].current.orderedItems;
+}
+
+const SitesList = ( { sites, activity } ) => {
+	return (
+		<div className="sites-container">
 	<style jsx>{`
 	ul li {
 		list-style: none;
@@ -20,6 +34,7 @@ export default ({sites, activity}) => <div className="sites-container">
 		margin-bottom: 5px;
 	}
 `}</style>
+	<h3>WordPress Sites</h3>
 	<ul>
 		{
 			map( sites, site =>
@@ -27,21 +42,21 @@ export default ({sites, activity}) => <div className="sites-container">
 					<li>
 						<span className="site-id">{ site.ID }</span>
 						<a href={ site.URL }>{ site.name }</a>
-
-						{/*<ul>*/}
-						{/*	{*/}
-						{/*		map(*/}
-						{/*			activity[site.ID] ? activity[site.ID].events : [],*/}
-						{/*			( event, ind ) =>*/}
-						{/*			<li key={ `activity-${site.ID}-${ind}`} className="events-container">*/}
-						{/*				{ event.summary } by { event.actor.name } { moment( event.published ).fromNow()}*/}
-						{/*			</li>*/}
-						{/*		)*/}
-						{/*	}*/}
-						{/*</ul>*/}
 					</li>
+
+					<ul>
+						{ map( getActivityEvents( activity, site.ID ), ( { summary, activity_id, actor, published } ) =>
+							<li key={ activity_id } className="events-container">
+								{ summary } by { actor.name } { moment( published ).fromNow() }
+							</li>
+						) }
+					</ul>
+
 				</div>
 			)
 		}
 	</ul>
-</div>;
+</div>) };
+
+export default SitesList;
+
