@@ -11,14 +11,14 @@ import axios from 'axios';
 import config from '../config/development';
 const { API_HOST } = config;
 
-const useWPComApiRequest = ( endpoint, initialData, {
+const useWPComApiRequest = ( initialData, {
 	namespace = `rest`,
 	version = `v1.1`,
 	longPolling = false,
 	token = null,
 } ) => {
 	const [ data, setData ] = useState( initialData );
-	const [ url, setUrl ] = useState( `${ API_HOST }/${ namespace }/${ version }${ endpoint }` );
+	const [ url, setUrl ] = useState('');
 	const [ isLoading, setIsLoading ] = useState(false);
 	const [ isError, setIsError ] = useState(false);
 	const [ requestAgain, triggerRequest ] = useReducer( state => state + 1, 0 );
@@ -59,22 +59,28 @@ const useWPComApiRequest = ( endpoint, initialData, {
 
 
 	useEffect( () => {
+		if ( ! url ) {
+			return;
+		}
+
 		const fetchData = async () => {
 			setIsError( false );
 			setIsLoading( true );
 			try {
 				const result = await requester(url);
 				setData(result.data);
+				setIsError( false );
 			} catch (error) {
 				setData( error.message );
 				setIsError(true);
 			}
 			setIsLoading(false);
 		};
+
 		fetchData();
 
 		return () => source.cancel( 'BOO!' );
-	}, [url, requestAgain, token ] );
+	}, [ url, requestAgain, token ] );
 
 	return [ { data, isLoading, isError }, setEndpoint ];
 };

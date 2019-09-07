@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import React, { useEffect } from 'react';
+import React, { useReducer } from 'react';
 import Head from 'next/head';
 
 /**
@@ -10,11 +10,10 @@ import Head from 'next/head';
 import Menu from './layout-menu';
 import Footer from './layout-footer';
 import globalStyles from './global-styles';
-import { setToken } from '../lib/store';
+import { getToken, setToken } from '../lib/store';
 import pickUpTokenFromURL from '../lib/pick-up-token-from-url';
 
-
-// const watchdogReducer = ( state, action ) => {
+// export const watchdogReducer = ( state, action ) => {
 // 	switch ( action.type ) {
 // 		case 'storeToken':
 // 			return { ...state, token: action.token };
@@ -23,9 +22,16 @@ import pickUpTokenFromURL from '../lib/pick-up-token-from-url';
 
 
 const Layout = ({ children, title = 'Watchdog' }) => {
+	// const [ state, dispatch ] = useReducer( watchdogReducer, {
+	// 	token: getToken(),
+	// } );
+
 	const pickedUpToken = pickUpTokenFromURL();
-	if ( pickedUpToken ) {
+	const storeToken = getToken();
+
+	if ( pickedUpToken && ! storeToken ) {
 		setToken( pickedUpToken );
+		// dispatch( { type: 'storeToken', token: pickedUpToken } );
 	}
 
 	return (

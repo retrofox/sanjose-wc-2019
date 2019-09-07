@@ -10,18 +10,48 @@ import useWPComApi from '../hooks/use-wpcom-api';
 import Layout from '../components/layout'
 import SitesList from '../components/sites-list';
 import { getToken } from '../lib/store';
+import config from "../config/development";
+const { API_HOST } = config;
 
 const Home =  () => {
-	const [ { data, isLoading, isError }, doFetch ] = useWPComApi(
-		'/me/sites', {
-			sites: []
-		}, {
+	// create requester by custom hook.
+	const [ { data: sitesData, isSitesError }, fetchSites ] = useWPComApi(
+		{ sites: [] }, { token: getToken(), longPolling: false }
+	);
+
+	const [ { data: activityData, isActivityError }, fetchSiteEvents ] = useWPComApi(
+		{ sites: [] }, {
 			token: getToken(),
 			longPolling: false,
+			namespace: 'wpcom',
+			version: 'v2',
 		}
 	);
 
-	if ( isError ) {
+
+	useEffect( () => {
+		fetchSites( '/me/sites/' );
+
+		// Fetch me sites
+		if ( sitesData.sites && sitesData.sites.length ) {
+			const sites = sitesData.sites;
+
+			console.log( { sites } );
+
+
+			for ( const ind in sites ) {
+				const site = sites[ ind ];
+				const siteId = site.ID;
+				console.log( { siteId } );
+
+				setTimeout( () => {
+					fetchSiteEvents(`/sites/${siteId}/activity`);
+				}, 1000 );
+			}
+		}
+	}, [ sitesData.sites ] );
+
+	if ( isSitesError ) {
 		return (
 			<Layout title="No Connection">
 				<style jsx>{`
@@ -40,7 +70,7 @@ const Home =  () => {
 				`}
 				</style>
 				<div className='error-response'>
-					{ data }
+					{ typeof data === 'string' ? data : 'Desconocido' }
 				</div>
 			</Layout>
 		);
@@ -56,7 +86,7 @@ const Home =  () => {
 			🐶 Watchdog
 		</h1>
 
-		<SitesList sites={ data.sites } />
+		<SitesList sites={ sitesData.sites } />
 	</Layout>
 }
 
